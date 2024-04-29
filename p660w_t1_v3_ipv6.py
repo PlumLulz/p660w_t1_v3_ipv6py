@@ -16,7 +16,7 @@ def p660w_t1_v3_ipv6(mac):
 
 	digest1 = hashlib.md5()
 	for i in mac_byte_values:
-		digest1.update(i.to_bytes())
+		digest1.update(i.to_bytes(length=1, byteorder='big'))
 	digest2 = hashlib.md5()
 	digest2.update(digest1.digest()[0:6])
 	hex_digest2 = digest2.hexdigest()
@@ -44,3 +44,4 @@ parser.add_argument('mac', help='Mac address')
 args = parser.parse_args()
 
 p660w_t1_v3_ipv6(args.mac)
+
